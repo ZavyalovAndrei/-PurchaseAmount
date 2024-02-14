@@ -3,7 +3,7 @@ import Book from "../domain/Book";
 import MusicAlbum from "../domain/MusicAlbum";
 import Cinema from "../domain/Cinema";
 
-let cart: Cart = new Cart();
+let cart = new Cart();
 cart.add(new Book(1001, "Librarian", "Mikhail Elizarov", 2007, 600));
 cart.add(new MusicAlbum(1002, "Grave Digger", "Mob Tactics", 1200));
 cart.add(
@@ -23,16 +23,18 @@ cart.add(
 );
 
 test("new card should be empty", () => {
-  const testCart: Cart = new Cart();
+  const testCart = new Cart();
   expect(testCart.items.length).toBe(0);
 });
 
 test("should be 3 positions in the card when they are added", () => {
-  expect(cart.items.length + 1).toBe(3);
+  expect(cart.items.length).toBe(3);
 });
 
 test("should be return total summ (2200) of items", () => {
-  expect(cart.summ).toBe(2200);
+  const result: number = cart.summ;
+  const expected: number = 2200;
+  expect(result).toBe(expected)
 });
 
 test("should be return total summ (2090) of items with discount 5%", () => {
@@ -41,9 +43,5 @@ test("should be return total summ (2090) of items with discount 5%", () => {
 
 test("should be 2 positions in the card after removing one", () => {
   cart.remove(1002);
-  expect(cart.items.length + 1).toBe(2);
+  expect(cart.items.length).toBe(2);
 });
-
-function expect(length: number) {
-  throw new Error("Function not implemented.");
-}
