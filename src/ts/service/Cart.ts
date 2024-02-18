@@ -12,10 +12,10 @@ export default class Cart {
     }
 
     get summ(): number {
-        let result: number = 0;
-        this._items.forEach(item => result += item.price);
-        return result;
-    }
+        return this._items.reduce((accumulator, item) => {
+          return (accumulator += item.price);
+        }, 0);
+      }
 
     getiscount(discount: number): number {
         return this.summ - (this.summ * discount)/100;
